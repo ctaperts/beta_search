@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'ranNUM'
 
 puts "Enter google search"
 google_search = gets
@@ -14,11 +15,9 @@ until $google_amount_link_start >= $google_amount_link_total  do
     nokogiri_object = Nokogiri::HTML(html_data)
     search_elements = nokogiri_object.xpath("//h3[@class='r']/a/@href")
     search_elements.each do |search_element|
-        puts search_element.text.gsub(/\/url?q=|&sa=.*/, '')
+        puts search_element.text.gsub('/url?q=', '').gsub(/&sa=.*/, '')
     end
    $google_amount_link_start +=$google_amount_per_page;
-   if $google_amount_link_total > 10
-       sleep(4.6)
-   end
+   sleep(RAN.num(30))
 end
 
