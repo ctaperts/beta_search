@@ -4,10 +4,12 @@ require 'ranNUM'
 
 puts "Enter google search"
 google_search = gets
-puts "How many results? Results will be given in multiples of ten"
+puts "How many results per page?"
+$google_amount_per_page = gets.to_i
+
+puts "How many Results in total? Each page will be given in multiples of #{$google_amount_per_page}"
 $google_amount_link_total = gets.to_i
 $google_amount_link_start = 0
-$google_amount_per_page = 10
 
 until $google_amount_link_start >= $google_amount_link_total  do
     #parse data in google to URL
